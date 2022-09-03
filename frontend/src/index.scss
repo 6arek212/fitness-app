@@ -1,0 +1,402 @@
+/* google font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,900;1,100;1,300;1,400;1,500&display=swap');
+
+
+$orange: #df7a29;
+$white : #fff;
+$background: #18222F;
+$onPrimary: #141418;
+$light-primary : #3e4757;
+$light-background: #f9f9f9;
+$error: #e7195a;
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Roboto";
+}
+
+label,
+input {
+  display: block;
+}
+
+.spacer {
+  flex: 1 1 auto
+}
+
+input.error {
+  border: 1px solid $error;
+}
+
+div.error {
+  padding: 10px;
+  background: #ffefef;
+  border: 1px solid $error;
+  color: $error;
+  border-radius: 4px;
+  margin: 20px 0;
+}
+
+// ------------------ login page -------------------------
+
+.login {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  background: url('../public/imgs/bg.jpg') no-repeat center center;
+  background-size: cover;
+
+  .left::after {
+    content: "";
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .6);
+  }
+
+
+  .left {
+    flex: 2;
+
+    width: 100%;
+
+    .container {
+      position: relative;
+      top: 30%;
+      left: 10%;
+    }
+
+    h1 {
+      position: relative;
+      z-index: 3;
+      font-size: 4em;
+      color: $orange;
+    }
+
+    h2 {
+      position: relative;
+      color: $white;
+      z-index: 3;
+    }
+  }
+
+
+
+
+
+  .right {
+    z-index: 2;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba($color: $background, $alpha: .9);
+
+    .container {
+      max-width: 400px;
+      width: 100%;
+      background: rgba($color: #141418, $alpha: .5);
+      padding: 26px 20px;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo {
+      background: url('../public/imgs/logo.jpg') no-repeat center center;
+      background-size: cover;
+      border-radius: 100%;
+      height: 150px;
+      width: 150px;
+    }
+
+    h2 {
+      color: $white;
+      margin-top: 30px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      width: 80%;
+
+      input {
+        border: 0;
+        border-radius: 8px;
+        padding: 8px;
+        background: $light-primary;
+        margin-top: 8px;
+        width: 100%;
+        color: $white;
+      }
+
+      label {
+        margin-top: 20px;
+        color: $light-primary;
+      }
+
+      .remember-me {
+        display: flex;
+        align-items: center;
+
+        input {
+          width: 15px;
+          height: 15px;
+          margin-right: 8px;
+        }
+      }
+
+      button {
+        border: 0;
+        border-radius: 8px;
+        margin-top: 40px;
+        padding: 8px;
+        background: $orange;
+        color: $white;
+        font-size: 1.2em;
+      }
+
+    }
+  }
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ------------------ home page -------------------------
+
+
+.home header {
+  display: flex;
+  align-items: center;
+  padding: 36px 20px;
+  background: $background;
+  color: $white;
+  border-bottom: 10px solid $orange;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+}
+
+nav .logout{
+  width: 100%;
+  background-color: $background;
+  color: $white;
+  border: 2px solid $white;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+  margin-top: 8px;
+}
+
+
+
+.home {
+  width: 100%;
+  background: $light-background ;
+  overflow-y: auto;
+  height: calc(100vh);
+
+  .brand-logo {
+    display: flex;
+    align-items: center;
+
+    h1 {
+      margin-left: 16px;
+      color: $white;
+      font-size: 3rem;
+    }
+
+    .logo {
+      background: url('../public/imgs/logo.jpg') no-repeat center center;
+      background-size: cover;
+      border-radius: 100%;
+      height: 50px;
+      width: 50px;
+    }
+  }
+
+
+}
+
+
+
+
+
+.home section {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 100px;
+  padding: 20px;
+
+
+  .right .gif-ex {
+    width: 50px;
+    height: 50px;
+  }
+
+ 
+
+ .left input {
+    border: 0;
+    background: $light-primary;
+    color: $white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    width: 100%;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+  }
+}
+
+
+
+// ------------------ workout details -------------------------
+
+.workout-details {
+  background: #fff;
+  border-radius: 4px;
+  margin: 20px auto;
+  padding: 20px;
+  position: relative;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.workout-details h4 {
+  margin: 0 0 10px 0;
+  font-size: 1.2em;
+  color: var(--primary);
+}
+
+.workout-details p {
+  margin: 0;
+  font-size: 0.9em;
+  color: #555;
+}
+
+.workout-details span {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  background: #f1f1f1;
+  padding: 6px;
+  border-radius: 50%;
+  color: #333;
+  transition: background 200ms;
+}
+
+
+.workout-details span:hover {
+  background: $error;
+}
+
+
+
+// ------------------ workout form -------------------------
+
+.workout-form {
+  padding: 20px;
+  background: $background;
+  border-radius: 8px;
+}
+
+.workout-form h3 {
+  color: $light-background;
+}
+
+.workout-form input,
+.workout-form textarea,
+.workout-form select {
+  padding: 5px 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: $light-background;
+}
+
+.workout-form label {
+  color: $light-background;
+  margin-top: 30px;
+}
+
+.workout-form form button {
+  background: $orange;
+  border: 0;
+  color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+
+
+
+// ------------------ customer form -------------------------
+
+.customer-form {
+  padding: 20px;
+  background: $background;
+  border-radius: 8px;
+  margin-top: 30px;
+}
+
+.customer-form h3 {
+  color: $light-background;
+}
+
+.customer-form input,
+.customer-form textarea,
+.customer-form select {
+  padding: 5px 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: $light-background;
+}
+
+.customer-form label {
+  color: $light-background;
+  margin-top: 30px;
+}
+
+.customer-form button {
+  background: $orange;
+  border: 0;
+  color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
