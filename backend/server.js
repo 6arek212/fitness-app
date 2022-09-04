@@ -9,6 +9,11 @@ const customerRoutes = require('./routes/customer')
 const workoutRoutes = require('./routes/workout')
 
 
+const { networkInterfaces } = require('os')
+const ip = Object.values(networkInterfaces()).flat().find(i => i.family == 'IPv4' && !i.internal).address;
+console.log(ip);
+
+
 const app = express()
 app.use(cors());
 
