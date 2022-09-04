@@ -1,14 +1,53 @@
 const Customer = require('../model/customerModel')
+const Workout = require('../model/workoutModel')
 const mongoose = require('mongoose')
-
 
 exports.getCustomers = async (req, res, next) => {
 
-    const customers = await Customer.find()
+    const page = + req.query.page
+    const pageSize = + req.query.pageSize
+    const { search } = req.query
+
+    console.log('-------------------------------', page, pageSize);
+
+    const query = Customer.find()
+
+    if (search) {
+        const customer = await Customer.findOne(
+            {
+                $or: [
+                    {
+                        "$expr": {
+                            "$regexMatch": {
+                                "input": { "$concat": ["$firstName", " ", "$lastName"] },
+                                "regex": search,  //Your text search here
+                                "options": "i"
+                            }
+                        }
+
+                    },
+                    { 'phone': { $regex: "^" + search } }
+                ]
+            }
+        )
+
+        query.where({ _id: customer?._id })
+    }
+
+
+
+    if (page && pageSize) {
+        query.skip(pageSize * (page - 1)).limit(pageSize)
+    }
+
+
+    const customers = await query.sort({ createdAt: 'desc' })
+    const count = await Customer.count()
+
     res.status(200).json({
         message: 'fetched customers success',
         customers,
-        count: customers.length
+        count
     })
 }
 
@@ -67,7 +106,7 @@ exports.createCustomer = async (req, res, next) => {
 
 
 
-exports.updateCustomer = async (req ,res ,next) => {
+exports.updateCustomer = async (req, res, next) => {
     const { id } = req.params
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -106,6 +145,8 @@ exports.deleteCustomer = async (req, res, next) => {
         })
     }
 
+
+    await Workout.deleteMany({ customer: id })
     const result = await Customer.deleteOne({ _id: id })
 
     if (result.deletedCount == 0) {

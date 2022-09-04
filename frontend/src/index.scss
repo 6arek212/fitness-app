@@ -4,10 +4,16 @@
 
 $orange: #df7a29;
 $white : #fff;
-$background: #18222F;
+$black : #000;
+$red : rgb(182, 36, 36);
+
+
+$primary: #18222F;
 $onPrimary: #141418;
 $light-primary : #3e4757;
-$light-background: #f9f9f9;
+
+$background: #F1F2F3;
+$light-background: #F7F7F7;
 $error: #e7195a;
 
 * {
@@ -39,6 +45,66 @@ div.error {
   margin: 20px 0;
 }
 
+
+.main header {
+  // height: 15vh;
+}
+
+.main-container {
+  width: 100%;
+  display: flex;
+  min-height: 85vh;
+
+  .left {
+    flex: 1;
+    max-width: 300px;
+    background: $light-background;
+  }
+
+  .right {
+    flex: 3;
+    background: $background;
+  }
+}
+
+
+.logo {
+  background: url('../public/imgs/logo.jpg') no-repeat center center;
+  background-size: cover;
+  background-position: center;
+  border-radius: 100%;
+  height: 50px;
+  width: 50px;
+}
+
+.card {
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  background: $light-background;
+  margin: 0 8px;
+  border-radius: 4px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.default-button {
+  border: 0;
+  padding: 10px 16px;
+  background: $orange;
+  color: $white;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+
+.material-symbols-outlined {
+  cursor: pointer;
+}
+
 // ------------------ login page -------------------------
 
 .login {
@@ -48,6 +114,7 @@ div.error {
   flex-direction: row;
   background: url('../public/imgs/bg.jpg') no-repeat center center;
   background-size: cover;
+  background-position: center 30%;
 
   .left::after {
     content: "";
@@ -57,7 +124,7 @@ div.error {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(0, 0, 0, .6);
+    background-color: rgba(0, 0, 0, .7);
   }
 
 
@@ -72,17 +139,21 @@ div.error {
       left: 10%;
     }
 
+
     h1 {
       position: relative;
       z-index: 3;
-      font-size: 4em;
+      font-size: 5.5em;
       color: $orange;
     }
+
 
     h2 {
       position: relative;
       color: $white;
+      margin-top: 30px;
       z-index: 3;
+      font-size: 2.5em;
     }
   }
 
@@ -97,12 +168,14 @@ div.error {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: rgba($color: $background, $alpha: .9);
+    background: rgba($color: $primary, $alpha: .9);
+    border-bottom-left-radius: 50px;
+    border-top-left-radius: 20px;
 
     .container {
       max-width: 400px;
       width: 100%;
-      background: rgba($color: #141418, $alpha: .5);
+      background: rgba($color: $onPrimary, $alpha: 1);
       padding: 26px 20px;
       border-radius: 8px;
       display: flex;
@@ -141,7 +214,7 @@ div.error {
 
       label {
         margin-top: 20px;
-        color: $light-primary;
+        color: $white;
       }
 
       .remember-me {
@@ -181,20 +254,48 @@ div.error {
 
 
 
+// --------------------vNav-----------------
+
+
+.vertical-nav {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.vertical-nav a {
+  width: 100%;
+  text-decoration: none;
+  font-size: 1.3rem;
+  padding: 10px 20px;
+  transition: background .2s;
+  border-left: 4px solid $orange;
+  color: $black;
+  border-bottom: 1px solid $black;
+  padding: 20px;
+}
+
+
+.vertical-nav a:hover {
+  background: $orange;
+  color: $white;
+}
 
 
 
 
 
 
-// ------------------ home page -------------------------
+// ------------------ Navbar page -------------------------
 
 
-.home header {
+
+header {
   display: flex;
   align-items: center;
   padding: 36px 20px;
-  background: $background;
+  background: $primary;
   color: $white;
   border-bottom: 10px solid $orange;
 }
@@ -206,7 +307,7 @@ nav {
 
 nav button {
   width: 100%;
-  background-color: $background;
+  background-color: $primary;
   color: $white;
   border: 2px solid $white;
   padding: 6px 10px;
@@ -218,72 +319,72 @@ nav button {
 }
 
 nav button:hover {
-  background: $error;
-  border-color: $error;
+  background: $red;
+  border-color: $red;
 }
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+
+  h1 {
+    margin-left: 16px;
+    color: $background;
+    font-size: 3rem;
+  }
+
+  h1::first-letter {
+    color: $orange;
+  }
+
+  .logo {
+    background: url('../public/imgs/logo.jpg') no-repeat center center;
+    background-size: cover;
+    background-position: center;
+    border-radius: 100%;
+    height: 50px;
+    width: 50px;
+  }
+}
+
+
+
+
+// ------------------ home page -------------------------
 
 
 .home {
   width: 100%;
-  background: $light-background ;
+  background: $background;
   overflow-y: auto;
-  height: calc(100vh);
-
-  .brand-logo {
-    display: flex;
-    align-items: center;
-
-    h1 {
-      margin-left: 16px;
-      color: $white;
-      font-size: 3rem;
-    }
-
-    .logo {
-      background: url('../public/imgs/logo.jpg') no-repeat center center;
-      background-size: cover;
-      border-radius: 100%;
-      height: 50px;
-      width: 50px;
-    }
-  }
-
-
-}
-
-
-
-
-
-.home section {
-  position: relative;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 100px;
+  min-height: calc(100vh);
+  // align-self: flex-start;
   padding: 20px;
-  border: 1px solid #cecece;
-
- 
-  .left{
-  }
-
-  .left input {
-    border: 0;
-    background: $light-background;
-    color: $background;
-    padding: 10px 20px;
-    border-radius: 4px;
-    width: 100%;
-    margin: 0 auto;
-    font-size: 1.3rem;
-    margin-bottom: 20px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-    position: sticky;
-    top: 20px;
-    z-index: 3;
-    transition: all 0.4s ease;
-  }
 }
+
+.home .search{
+  position: sticky;
+  top: 20px;
+  z-index: 3;
+}
+
+
+.home .search input {
+  display: block;
+  border: 0;
+  background: $light-background;
+  color: $black;
+  padding: 10px 20px;
+  border-radius: 4px;
+  width: 100%;
+  margin: 0 auto;
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  transition: all 0.4s ease;
+}
+
+
 
 
 
@@ -403,4 +504,74 @@ nav button:hover {
   padding: 10px;
   border-radius: 8px;
   cursor: pointer;
+}
+
+
+
+// ------------------ customer  page ---------------
+
+.customers {
+  padding: 20px;
+}
+
+
+.customers .stats {
+  display: flex;
+  justify-content: center;
+}
+
+
+.customers table {
+  margin-top: 20px;
+  text-align: center;
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 1.2rem;
+}
+
+.customers table th {
+  padding: 12px 12px;
+  text-align: left;
+  background-color: $primary;
+  color: white;
+}
+
+.customers table tr {
+  background: $light-background;
+  border-bottom: 1px solid $black;
+}
+
+.customers table tr:first-child {
+  width: 10px;
+}
+
+.customers table tr:hover {
+  width: 100%;
+  background-color: $light-background;
+}
+
+.customers table td {
+  padding: 50px 10px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+
+.search {
+  margin-top: 80px;
+  display: flex;
+}
+
+.customers .search input {
+  border: 0;
+  padding: 10px 20px;
+  background: $white;
+  min-width: 40%;
+  border-radius: 4px;
+}
+
+.customers .search button {
+  height: 100%;
+  align-self: flex-end;
+  margin-left: 30px;
 }

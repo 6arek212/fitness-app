@@ -32,23 +32,7 @@ const Home = () => {
     }, [dispatch, execute, search])
 
 
-    const handleScroll = async (e) => {
-        const bottom = e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
-        console.log('scrolling');
-        if (bottom && !isLoading && !reachedBottom) {
-            console.log('bottom');
-            await execute((data) => {
-                if (data.workouts.length == 0) {
-                    setReached(true)
-                }
-                else
-                    dispatch({
-                        type: 'NEXT_PAGE',
-                        payload: data?.workouts
-                    })
-            }, null, { search: search, page: page + 1, pageSize })
-        }
-    }
+
 
 
     useEffect(() => {
@@ -56,61 +40,48 @@ const Home = () => {
     }, [search, getWorkouts])
 
 
+    useEffect(() => {
+        const handleScroll = async () => {
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10 && !isLoading ) {
+                console.log("you're at the bottom of the page");
+
+                await execute((data) => {
+                    if (data.workouts.length < pageSize) {
+                        setReached(true)
+                    }
+                    else
+                        dispatch({
+                            type: 'NEXT_PAGE',
+                            payload: data?.workouts
+                        })
+                }, null, { search: search, page: page + 1, pageSize })
+            }
+        }
+
+        // window.addEventListener('scroll', handleScroll);
+        return () => { window.removeEventListener("scroll", handleScroll) }
+    }, [])
 
     return (
-        <div className="home" onScroll={handleScroll}>
+        <div className="home">
 
-            <header>
+            <WorkoutForm />
 
-                <div className="brand-logo">
-                    <div className="logo"></div>
-                    <h1>AZEZ FITNESS</h1>
-                </div>
+            <div className="search">
+                <input
+                    type="text"
+                    placeholder='Search...'
+                    value={search}
+                    onChange={(e) => {
+                        setSearch(e.target.value)
+                    }} />
+            </div>
 
-                <div className="spacer"></div>
+            {workouts?.map(workout => <WorkoutDetails key={workout._id} workout={workout} />)}
 
-
-
-                <nav>
-                    <p>Wellcome , <strong>{`${user.firstName} ${user.lastName}`}</strong></p>
-
-                    <button onClick={logout}>Logout</button>
-                </nav>
-            </header>
-
-
-
-            <section>
-                <div className='left'>
-
-                    <input
-                        type="text"
-                        placeholder='Search...'
-                        value={search}
-                        onChange={(e) => {
-                            setSearch(e.target.value)
-                        }} />
-
-
-                    {
-                        workouts?.map(workout =>
-                            <WorkoutDetails key={workout._id} workout={workout} />
-                        )
-                    }
-
-                    {reachedBottom && <div>Bottom Reached</div>}
-                    {isLoading && <div>Loading...</div>}
-                    {error && <div className='error'>{error}</div>}
-                </div>
-
-                <div className='right'>
-                    <WorkoutForm />
-                    <CustomerForm />
-                </div>
-            </section>
-
-
-
+            {reachedBottom && <div>Bottom Reached</div>}
+            {isLoading && <div>Loading...</div>}
+            {error && <div className='error'>{error}</div>}
         </div>
     );
 }

@@ -19,7 +19,9 @@ const Login = () => {
 
             <div className="left">
                 <div className="container">
-                    <h1>This<br />Is My<br />Happy<br />Hour</h1>
+                    <h1>This Is My</h1>
+                    <h1>Happy</h1>
+                    <h1>Hour</h1>
                     <h2>Let's Do it</h2>
                 </div>
             </div>
