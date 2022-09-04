@@ -7,8 +7,8 @@ const WorkoutForm = () => {
     const [customer, setCustomer] = useState('-1')
     const [description, setDescription] = useState('')
     const [date, setDate] = useState('')
-    const { data, isLoading: isLoadingCustomers, error: errorCustomer } = useFetch('http://localhost:4000/api/customers')
-    const { execute, isLoading, error } = useFetch('http://localhost:4000/api/workouts', 'POST', false)
+    const { data, isLoading: isLoadingCustomers, error: errorCustomer } = useFetch('/customers')
+    const { execute, isLoading, error } = useFetch('/workouts', 'POST', false)
     const { dispatch } = useWorkoutContext()
     const { token } = useAuthContext()
 
@@ -26,6 +26,9 @@ const WorkoutForm = () => {
                 type: 'CREATE_WORKOUT',
                 payload: result.workout
             })
+            setCustomer('-1')
+            setDescription('')
+            setDate('')
         }, workout)
 
     }

@@ -15,7 +15,7 @@ const Home = () => {
     const { user } = useAuthContext()
     const { logout } = useLogout()
     const { workouts, page, dispatch } = useWorkoutContext()
-    const { execute, error, isLoading } = useFetch('http://localhost:4000/api/workouts', 'GET', false)
+    const { execute, error, isLoading } = useFetch('/workouts', 'GET', false)
 
     const getWorkouts = useCallback(() => {
         execute((data) => {

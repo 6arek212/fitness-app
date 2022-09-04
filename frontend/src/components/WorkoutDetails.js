@@ -6,7 +6,7 @@ import { useWorkoutContext } from '../hooks/useWorkoutContext'
 
 const WorkoutDetails = ({ workout }) => {
     const { dispatch } = useWorkoutContext()
-    const { execute, isLoading, error } = useFetch('http://localhost:4000/api/workouts/' + workout._id, 'DELETE', false)
+    const { execute, isLoading, error } = useFetch('/workouts/' + workout._id, 'DELETE', false)
 
     const onDelete = async (e) => {
         e.preventDefault()

@@ -11,6 +11,11 @@ const serialize = function (obj) {
   return '?' + str.join("&");
 }
 
+
+
+const BASE_URL = 'http://localhost:4000/api'
+
+
 export const useFetch = (url, method = 'GET', runOnStart = true) => {
   const { token } = useAuthContext()
   const [data, setData] = useState(null);
@@ -19,7 +24,7 @@ export const useFetch = (url, method = 'GET', runOnStart = true) => {
 
 
   const execute = useCallback(async (callback, body, queryParams) => {
-    const customURL = queryParams ? url + serialize(queryParams) : url
+    const customURL = queryParams ? BASE_URL + url + serialize(queryParams) : BASE_URL + url
 
     try {
       setError(null)
@@ -34,6 +39,7 @@ export const useFetch = (url, method = 'GET', runOnStart = true) => {
       const json = await response.json();
       if (!response.ok) { // error coming back from server
         console.log(response.message);
+        
         throw Error('could not fetch the data for that resource');
       }
 

@@ -2,17 +2,10 @@ require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors');
-const whatsapp = require('./controller/whatsappController')
-
 const userRoutes = require('./routes/user')
 const customerRoutes = require('./routes/customer')
 const workoutRoutes = require('./routes/workout')
-
-
-const { networkInterfaces } = require('os')
-const ip = Object.values(networkInterfaces()).flat().find(i => i.family == 'IPv4' && !i.internal).address;
-console.log(ip);
-
+const path = require("path")
 
 const app = express()
 app.use(cors());
@@ -31,6 +24,19 @@ app.use(express.json())
 app.use('/api/workouts', workoutRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/customers', customerRoutes)
+
+
+const html = path.join(  __dirname , '..','frontend' , 'build' )
+app.use(express.static(html));
+
+app.use('/*', (req, res, next) => {
+
+
+    console.log('1',  html);
+
+    res.sendFile(html + '/index.html')
+})
+
 
 
 //handling all errors

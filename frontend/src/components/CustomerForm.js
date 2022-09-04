@@ -1,21 +1,20 @@
 import { useState } from "react";
-import { useCreateCustomer } from '../hooks/useCreateCustomer'
+import { useFetch } from "../hooks/useFetch";
 
 const CustomerForm = () => {
     const [phone, setPhone] = useState('')
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
-    const { create, error, isLoading } = useCreateCustomer()
+    const { execute, isLoading, error } = useFetch('/customers', 'POST', false)
 
 
     const onCreate = async (e) => {
         e.preventDefault()
-        try {
-            await create(phone, firstName, lastName)
-        }
-        catch (e) {
-            console.log(e);
-        }
+        await execute(() => {
+            setPhone('')
+            setFirstName("")
+            setLastName('')
+        }, { phone, firstName, lastName })
     }
 
     return (
