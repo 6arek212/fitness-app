@@ -64,7 +64,7 @@ const Home = () => {
 
                 <div className="brand-logo">
                     <div className="logo"></div>
-                    <h1>Azez fitness</h1>
+                    <h1>AZEZ FITNESS</h1>
                 </div>
 
                 <div className="spacer"></div>
@@ -72,9 +72,9 @@ const Home = () => {
 
 
                 <nav>
-                    <p>Wellcome , {`${user.firstName} ${user.lastName}`}</p>
+                    <p>Wellcome , <strong>{`${user.firstName} ${user.lastName}`}</strong></p>
 
-                    <button onClick={logout} className="logout">Logout</button>
+                    <button onClick={logout}>Logout</button>
                 </nav>
             </header>
 

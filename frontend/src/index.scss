@@ -204,7 +204,7 @@ nav {
   flex-direction: column;
 }
 
-nav .logout{
+nav button {
   width: 100%;
   background-color: $background;
   color: $white;
@@ -214,8 +214,13 @@ nav .logout{
   cursor: pointer;
   font-size: 1em;
   margin-top: 8px;
+  transition: background .2s, border .2s;
 }
 
+nav button:hover {
+  background: $error;
+  border-color: $error;
+}
 
 
 .home {
@@ -253,27 +258,30 @@ nav .logout{
 .home section {
   position: relative;
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 2fr 1fr;
   gap: 100px;
   padding: 20px;
-
-
-  .right .gif-ex {
-    width: 50px;
-    height: 50px;
-  }
+  border: 1px solid #cecece;
 
  
+  .left{
+  }
 
- .left input {
+  .left input {
     border: 0;
-    background: $light-primary;
-    color: $white;
+    background: $light-background;
+    color: $background;
     padding: 10px 20px;
     border-radius: 4px;
     width: 100%;
+    margin: 0 auto;
     font-size: 1.3rem;
     margin-bottom: 20px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    position: sticky;
+    top: 20px;
+    z-index: 3;
+    transition: all 0.4s ease;
   }
 }
 
@@ -325,28 +333,26 @@ nav .logout{
 
 .workout-form {
   padding: 20px;
-  background: $background;
+  background: $light-background;
   border-radius: 8px;
+  border: 2px solid #cecece;
+  color: black;
 }
 
-.workout-form h3 {
-  color: $light-background;
-}
+
 
 .workout-form input,
 .workout-form textarea,
 .workout-form select {
-  padding: 5px 10px;
+  padding: 10px 10px;
   margin-top: 10px;
   margin-bottom: 20px;
   width: 100%;
   border: 1px solid #ddd;
   border-radius: 4px;
-  background: $light-background;
 }
 
 .workout-form label {
-  color: $light-background;
   margin-top: 30px;
 }
 
@@ -366,29 +372,27 @@ nav .logout{
 
 .customer-form {
   padding: 20px;
-  background: $background;
+  background: $light-background;
   border-radius: 8px;
   margin-top: 30px;
+  color: black;
+  border: 2px solid #cecece;
+  // box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.customer-form h3 {
-  color: $light-background;
-}
 
 .customer-form input,
 .customer-form textarea,
 .customer-form select {
-  padding: 5px 10px;
+  padding: 10px 10px;
   margin-top: 10px;
   margin-bottom: 20px;
   width: 100%;
   border: 1px solid #ddd;
   border-radius: 4px;
-  background: $light-background;
 }
 
 .customer-form label {
-  color: $light-background;
   margin-top: 30px;
 }
 
