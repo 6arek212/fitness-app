@@ -26,14 +26,10 @@ app.use('/api/users', userRoutes)
 app.use('/api/customers', customerRoutes)
 
 
-const html = path.join(  __dirname , '..','frontend' , 'build' )
+const html = path.join(__dirname, 'build')
 app.use(express.static(html));
 
-app.use('/*', (req, res, next) => {
-
-
-    console.log('1',  html);
-
+app.use('/', (req, res, next) => {
     res.sendFile(html + '/index.html')
 })
 
